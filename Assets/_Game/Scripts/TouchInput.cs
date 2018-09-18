@@ -36,10 +36,39 @@ public class TouchInput : MonoBehaviour
                     }
                     else
                     {
-                        //Ended
+                        StopPressingDPpad(hit2D.collider.tag);
                     }
                 }
             }
+        }
+    }
+
+    void StopPressingDPpad(string whichTag) 
+    {
+        switch (whichTag)
+        {
+            case "Up":
+                {
+                    Player.horizontalAxis = 0;
+                    break;
+                }
+            case "Down":
+                {
+                    Player.horizontalAxis = 0;
+                    break;
+                }
+            case "Left":
+                {
+                    Player.verticalAxis = 0;
+                    break;
+                }
+            case "Right":
+                {
+                    Player.verticalAxis = 0;
+                    break;
+                }
+            default:
+                break;
         }
     }
 
@@ -51,49 +80,42 @@ public class TouchInput : MonoBehaviour
                 {
                     if (UpPressed != null)
                         UpPressed();
-                    Debug.Log(whichTag);
                     break;
                 }
             case "Down":
                 {
                     if (DownPressed != null)
                         DownPressed();
-                    Debug.Log(whichTag);
                     break;
                 }
             case "Left":
                 {
                     if (LeftPressed != null)
                         LeftPressed();
-                    Debug.Log(whichTag);
                     break;
                 }
             case "Right":
                 {
                     if (RightPressed != null)
                         RightPressed();
-                    Debug.Log(whichTag);
                     break;
                 }
             case "A":
                 {
                     if (APressed != null)
-                        BPressed();
-                    Debug.Log(whichTag);
+                        APressed();
                     break;
                 }
             case "B":
                 {
                     if (BPressed != null)
                         BPressed();
-                    Debug.Log(whichTag);
                     break;
                 }
             case "Pause":
                 {
                     if (PausePressed != null)
                         PausePressed();
-                    Debug.Log(whichTag);
                     break;
                 }
             default:
