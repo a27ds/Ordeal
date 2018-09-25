@@ -4,107 +4,147 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static float horizontalAxis;
-    public static float verticalAxis;
-    public float moveForce = 4;
     Rigidbody2D playerBody;
     Animator anim;
-    int walkUpHash = Animator.StringToHash("walk_up");
+
+    public float verticalAxis;
+    public float horizontalAxis;
+    public float moveForce = 4;
+    KeyPressed keyPressed = KeyPressed.free;
+
+    enum KeyPressed { free, left, right, up, down };
+
+
+
 
     private void OnEnable()
     {
-        TouchInput.UpPressed += TouchInput_UpPressed;
-        TouchInput.DownPressed += TouchInput_DownPressed;
-        TouchInput.RightPressed += TouchInput_RightPressed;
-        TouchInput.LeftPressed += TouchInput_LeftPressed;
-        TouchInput.APressed += TouchInput_APressed;
-        TouchInput.BPressed += TouchInput_BPressed;
+        InputController.UpPressed += TouchInput_UpPressed;
+        InputController.DownPressed += TouchInput_DownPressed;
+        InputController.RightPressed += TouchInput_RightPressed;
+        InputController.LeftPressed += TouchInput_LeftPressed;
+        InputController.APressed += TouchInput_APressed;
+        InputController.BPressed += TouchInput_BPressed;
     }
 
     private void OnDisable()
     {
-        TouchInput.UpPressed -= TouchInput_UpPressed;
-        TouchInput.DownPressed -= TouchInput_DownPressed;
-        TouchInput.RightPressed -= TouchInput_RightPressed;
-        TouchInput.LeftPressed -= TouchInput_LeftPressed;
-        TouchInput.APressed -= TouchInput_APressed;
-        TouchInput.BPressed -= TouchInput_BPressed;
+        InputController.UpPressed -= TouchInput_UpPressed;
+        InputController.DownPressed -= TouchInput_DownPressed;
+        InputController.RightPressed -= TouchInput_RightPressed;
+        InputController.LeftPressed -= TouchInput_LeftPressed;
+        InputController.APressed -= TouchInput_APressed;
+        InputController.BPressed -= TouchInput_BPressed;
     }
 
     void Start()
     {
         playerBody = this.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
+
     }
 
-    void FixedUpdate()
+
+
+    void Update()
     {
-        CheckIfAnyKeysArePressed();
-        playerBody.velocity = new Vector2(Mathf.Lerp(0, verticalAxis * moveForce, 0.8f),
-                                          Mathf.Lerp(0, horizontalAxis * moveForce, 0.8f));
+        MovePlayer();
     }
 
-    void CheckIfAnyKeysArePressed()
+    void MovePlayer()
     {
-        if (Input.GetKey("up"))
+        playerBody.velocity = new Vector2(Mathf.Lerp(0, horizontalAxis * moveForce, 0.8f),
+                                          Mathf.Lerp(0, verticalAxis * moveForce, 0.8f));
+    }
+
+    void TouchInput_UpPressed(bool pressed)
+    {
+        if (pressed && keyPressed == KeyPressed.free)
         {
-            TouchInput_UpPressed();
+            keyPressed = KeyPressed.up;
+            verticalAxis = 1;
+            anim.Play("walk_up");
         }
-        if (Input.GetKey("down"))
+        else if (!pressed && keyPressed == KeyPressed.up)
         {
-            TouchInput_DownPressed();
-        }
-        if (Input.GetKey("left"))
-        {
-            TouchInput_LeftPressed();
-        }
-        if (Input.GetKey("right"))
-        {
-            TouchInput_RightPressed();
-        }
-        if (Input.GetKeyUp("up") || Input.GetKeyUp("down"))
-        {
-            horizontalAxis = 0;
-        }
-        if (Input.GetKeyUp("left") || Input.GetKeyUp("right"))
-        {
+            keyPressed = KeyPressed.free;
             verticalAxis = 0;
+            anim.Play("kid_up_idle");
         }
     }
 
-    void TouchInput_UpPressed()
+    void TouchInput_DownPressed(bool pressed)
     {
-        Debug.Log("up");
-        anim.SetTrigger(walkUpHash);
-        horizontalAxis = 1;
+        if (pressed && keyPressed == KeyPressed.free)
+        {
+            keyPressed = KeyPressed.down;
+            verticalAxis = -1;
+            anim.Play("walk_down");
+        }
+        else if (!pressed && keyPressed == KeyPressed.down)
+        {
+            keyPressed = KeyPressed.free;
+            verticalAxis = 0;
+            anim.Play("kid_down_idle");
+        }
     }
 
-    void TouchInput_DownPressed()
+    void TouchInput_RightPressed(bool pressed)
     {
-        Debug.Log("down");
-        horizontalAxis = -1;
+        if (pressed && keyPressed == KeyPressed.free)
+        {
+            keyPressed = KeyPressed.right;
+            horizontalAxis = 1;
+            anim.Play("walk_right");
+        }
+        else if (!pressed && keyPressed == KeyPressed.right)
+        {
+            keyPressed = KeyPressed.free;
+            horizontalAxis = 0;
+            anim.Play("kid_right_idle");
+        }
     }
 
-    void TouchInput_RightPressed()
+    void TouchInput_LeftPressed(bool pressed)
     {
-        Debug.Log("right");
-        verticalAxis = 1;
+        if (pressed && keyPressed == KeyPressed.free)
+        {
+            keyPressed = KeyPressed.left;
+            horizontalAxis = -1;
+            anim.Play("walk_left");
+        }
+        else if (!pressed && keyPressed == KeyPressed.left)
+        {
+            keyPressed = KeyPressed.free;
+            horizontalAxis = 0;
+            anim.Play("kid_left_idle");
+        }
     }
 
-    void TouchInput_LeftPressed()
+    void TouchInput_APressed(bool pressed)
     {
-        Debug.Log("left");
-        verticalAxis = -1;
+        if (pressed)
+        {
+            Debug.Log("a");
+        }
+        else
+        {
+
+        }
+
     }
 
-    void TouchInput_APressed()
+    void TouchInput_BPressed(bool pressed)
     {
-        Debug.Log("a");
-    }
+        if (pressed)
+        {
+            Debug.Log("b");
+        }
+        else
+        {
 
-    void TouchInput_BPressed()
-    {
-        Debug.Log("b");
+        }
+
     }
 
 }
