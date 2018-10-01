@@ -66,6 +66,11 @@ public class InputController : MonoBehaviour
                         {
                             StopPressingDPpad(justPressedDPad);
                         }
+                        else
+                        {
+                            StopPressingABOrPause(hit2D.collider.tag);
+                        }
+
                     }
                 }
                 else if (fingerIdPressedDPad == touch.fingerId)
@@ -76,9 +81,29 @@ public class InputController : MonoBehaviour
         }
     }
 
-    void PressingDPad()
+    void StopPressingABOrPause(string whichTag)
     {
-        
+        switch (whichTag)
+        {
+            case "A":
+                {
+                    Debug.Log(whichTag);
+                    APressed(false);
+                    break;
+                }
+            case "B":
+                {
+                    Debug.Log(whichTag);
+                    BPressed(false);
+                    break;
+                }
+            case "Pause":
+                {
+                    Debug.Log(whichTag);
+                    PausePressed(false);
+                    break;
+                }
+        }
     }
 
     void StopPressingDPpad(string whichTag)
@@ -105,6 +130,11 @@ public class InputController : MonoBehaviour
             case "Right":
                 {
                     RightPressed(false);
+                    break;
+                }
+            case "A":
+                {
+                    APressed(false);
                     break;
                 }
             default:
@@ -181,6 +211,14 @@ public class InputController : MonoBehaviour
         {
             RightPressed(true);
         }
+        if (Input.GetKey("a"))
+        {
+            APressed(true);
+        }
+        if (Input.GetKey("b"))
+        {
+            BPressed(true);
+        }
         if (Input.GetKeyUp("up"))
         {
             UpPressed(false);
@@ -196,6 +234,14 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyUp("right"))
         {
             RightPressed(false);
+        }
+        if (Input.GetKeyUp("a"))
+        {
+            APressed(false);
+        }
+        if (Input.GetKeyUp("b"))
+        {
+            BPressed(false);
         }
     }
 }

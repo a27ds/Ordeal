@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D playerBody;
     Animator anim;
+    public LampController lampController;
 
     public float verticalAxis;
     public float horizontalAxis;
@@ -13,9 +14,6 @@ public class Player : MonoBehaviour
     KeyPressed keyPressed = KeyPressed.free;
 
     enum KeyPressed { free, left, right, up, down };
-
-
-
 
     private void OnEnable()
     {
@@ -41,10 +39,7 @@ public class Player : MonoBehaviour
     {
         playerBody = this.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
-
     }
-
-
 
     void Update()
     {
@@ -125,13 +120,12 @@ public class Player : MonoBehaviour
     {
         if (pressed)
         {
-            Debug.Log("a");
+            lampController.SwitchOnOrOffLight(true);
         }
         else
         {
-
+            lampController.SwitchOnOrOffLight(false);
         }
-
     }
 
     void TouchInput_BPressed(bool pressed)
@@ -144,7 +138,5 @@ public class Player : MonoBehaviour
         {
 
         }
-
     }
-
 }
