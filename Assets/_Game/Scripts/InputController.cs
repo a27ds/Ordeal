@@ -132,11 +132,16 @@ public class InputController : MonoBehaviour
                     RightPressed(false);
                     break;
                 }
-            case "A":
-                {
-                    APressed(false);
-                    break;
-                }
+            //case "A":
+            //    {
+            //        APressed(false);
+            //        break;
+            //    }
+            //case "B":
+                //{
+                //    BPressed(false);
+                //    break;
+                //}
             default:
                 break;
         }
@@ -215,7 +220,7 @@ public class InputController : MonoBehaviour
         {
             APressed(true);
         }
-        if (Input.GetKey("b"))
+        if (Input.GetKey("s"))
         {
             BPressed(true);
         }
@@ -239,7 +244,7 @@ public class InputController : MonoBehaviour
         {
             APressed(false);
         }
-        if (Input.GetKeyUp("b"))
+        if (Input.GetKeyUp("s"))
         {
             BPressed(false);
         }

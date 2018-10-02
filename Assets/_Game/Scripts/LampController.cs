@@ -10,6 +10,7 @@ public class LampController : MonoBehaviour
 
     public GameObject lampLight;
     bool isLampOn = false;
+    public bool switchOnOrOff = false;
 
     // Use this for initialization
     void Start()
@@ -26,6 +27,11 @@ public class LampController : MonoBehaviour
         {
             a.light = lampLight;
         }
+    }
+
+    private void Update()
+    {
+        SwitchOnOrOffLight(switchOnOrOff);
     }
 
     public void SwitchOnOrOffLight(bool state)

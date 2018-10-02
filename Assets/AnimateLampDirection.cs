@@ -8,12 +8,10 @@ public class AnimateLampDirection : StateMachineBehaviour {
     public GameObject light;
     public LayerMask worldLayerMask;
     Vector2 direction = new Vector2(0.0f, 0.0f);
-    float xLightLocalScale;
 
      // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         SpriteRenderer lightSpriteRenderer = light.GetComponent<SpriteRenderer>();
-        xLightLocalScale = light.transform.localScale.x;
 
         if (stateInfo.IsTag("up"))
         {
@@ -43,11 +41,17 @@ public class AnimateLampDirection : StateMachineBehaviour {
             light.transform.localRotation = Quaternion.Euler(0, 0, 0);
             lightSpriteRenderer.sortingOrder = 51;
         }
+        RaycastAndScaleLight();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        RaycastHit2D lampHit = Physics2D.Raycast(light.transform.position, direction, 2.5f, worldLayerMask);
+        RaycastAndScaleLight();
+    }
+
+    void RaycastAndScaleLight()
+    {
+        RaycastHit2D lampHit = Physics2D.Raycast(light.transform.position, direction, 1.5f, worldLayerMask);
         if (lampHit.collider != null)
         {
             if (lampHit.distance <= 1.5f)
@@ -59,20 +63,20 @@ public class AnimateLampDirection : StateMachineBehaviour {
         }
         else
         {
-            light.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            LeanTween.scale(light, new Vector3(1f, 1f, 1f), 0.0f).setEaseInOutCubic();
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+    // override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
-	}
+	//}
 
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
-	override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+	//override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
        
-    }
+    //}
 
 	// OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.
 	//override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     public float verticalAxis;
     public float horizontalAxis;
-    public float moveForce = 4;
+    public float moveForce = 1.5f;
     KeyPressed keyPressed = KeyPressed.free;
 
     enum KeyPressed { free, left, right, up, down };
@@ -120,11 +120,11 @@ public class Player : MonoBehaviour
     {
         if (pressed)
         {
-            lampController.SwitchOnOrOffLight(true);
+            lampController.switchOnOrOff = true;
         }
         else
         {
-            lampController.SwitchOnOrOffLight(false);
+            lampController.switchOnOrOff = false;
         }
     }
 
@@ -132,11 +132,11 @@ public class Player : MonoBehaviour
     {
         if (pressed)
         {
-            Debug.Log("b");
+            moveForce = 3.5f;
         }
         else
         {
-
+            moveForce = 1.5f;
         }
     }
 }
