@@ -642,11 +642,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -669,7 +669,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5499998, y: 10.349998, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1356122636}
@@ -2554,48 +2554,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &1013045506
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4868229983795326, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4868229983795326, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4868229983795326, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4868229983795326, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4868229983795326, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4868229983795326, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4868229983795326, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4868229983795326, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: aa38b16d09b254ef381187e67049c9d2, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1077953023
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,7 +2622,7 @@ GameObject:
   - component: {fileID: 1084378548}
   - component: {fileID: 1084378550}
   - component: {fileID: 1084378549}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12518,7 +12476,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1799094593098474, guid: c850fed212af14a37a72dc4a822a973f, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c850fed212af14a37a72dc4a822a973f, type: 2}
@@ -14050,7 +14008,7 @@ GameObject:
   - component: {fileID: 1789369678}
   - component: {fileID: 1789369677}
   - component: {fileID: 1789369676}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: 3 Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}

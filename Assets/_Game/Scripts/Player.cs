@@ -28,6 +28,12 @@ public class Player : MonoBehaviour
 
     enum KeyPressed { free, left, right, up, down };
 
+    private void Awake()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+    }
+
     private void OnEnable()
     {
         InputController.UpPressed += TouchInput_UpPressed;

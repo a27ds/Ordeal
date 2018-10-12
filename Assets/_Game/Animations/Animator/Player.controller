@@ -33,9 +33,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 0}
-  worldLayerMask:
+  wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!114 &114428705885163952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 0}
-  worldLayerMask:
+  wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!114 &114630118769275286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,9 +63,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 0}
-  worldLayerMask:
+  wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!114 &114638351555019810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,9 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 0}
-  worldLayerMask:
+  wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!114 &114672589512148882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 0}
-  worldLayerMask:
+  wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!114 &114713852302010408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,9 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 0}
-  worldLayerMask:
+  wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!114 &114771334066231606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,9 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 0}
-  worldLayerMask:
+  wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!114 &114938788641500028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,9 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light: {fileID: 0}
-  worldLayerMask:
+  wallsLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
 --- !u!206 &206279248043057998
 BlendTree:
   m_ObjectHideFlags: 1
