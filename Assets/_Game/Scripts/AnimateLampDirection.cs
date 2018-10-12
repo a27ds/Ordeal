@@ -6,12 +6,13 @@ public class AnimateLampDirection : StateMachineBehaviour {
 
     //public LampController lampController;
     public GameObject light;
-    public LayerMask worldLayerMask;
+    public LayerMask wallsLayerMask;
     Vector2 direction = new Vector2(0.0f, 0.0f);
 
      // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         SpriteRenderer lightSpriteRenderer = light.GetComponent<SpriteRenderer>();
+
 
         if (stateInfo.IsTag("up"))
         {
@@ -51,7 +52,7 @@ public class AnimateLampDirection : StateMachineBehaviour {
 
     void RaycastAndScaleLight()
     {
-        RaycastHit2D lampHit = Physics2D.Raycast(light.transform.position, direction, 1.5f, worldLayerMask);
+        RaycastHit2D lampHit = Physics2D.Raycast(light.transform.position, direction, 1.5f, wallsLayerMask);
         if (lampHit.collider != null)
         {
             if (lampHit.distance <= 1.5f)

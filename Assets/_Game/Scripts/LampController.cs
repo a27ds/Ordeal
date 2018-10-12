@@ -9,14 +9,17 @@ public class LampController : MonoBehaviour
     Animator playerAnimator;
 
     public GameObject lampLight;
-    public ParticleSystem lampParticle;
+    public ParticleSystem lampParticlePrefab;
     public BatteryController battery;
-    public bool isLampOn = false;
-    public bool switchOnOrOff = false;
+    public bool isLampOn;
+    public bool switchOnOrOff;
+    public int howManyParticleSystems = 10;
+    ParticleSystem lampParticle;
 
     // Use this for initialization
     void Start()
     {
+        lampParticle = Instantiate(lampParticlePrefab, transform);
         lampParticle.gameObject.SetActive(false);
 
         lampLight = Instantiate(lampLight, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, -90), GameObject.Find("Lamp").transform);
@@ -35,28 +38,24 @@ public class LampController : MonoBehaviour
 
     private void Update()
     {
-            SwitchOnOrOffLight(switchOnOrOff);
-    }
-
-    public void SetPosAndRotationForLampParticle()
-    {
-        lampParticle.gameObject.transform.position = lampLight.transform.position;
-        lampParticle.gameObject.transform.rotation = lampLight.transform.rotation;
+        SwitchOnOrOffLight(switchOnOrOff);
     }
 
     public void SwitchOnOrOffLight(bool state)
     {
-
         SetPosAndRotationForLampParticle();
+
         if (state && !isLampOn)
         {
+
+
             if (!lampParticle.gameObject.activeSelf)
             {
                 lampParticle.gameObject.SetActive(true);
             }
             if (!battery.isBatteryDead)
             {
-                lampParticle.Play();
+                lampParticle.Play(true);
                 isLampOn = true;
                 lampLight.SetActive(true);
                 LeanTween.scale(lampLight, new Vector3(1f, 1f, 1f), 0.2f).setEaseInOutCubic();
@@ -64,12 +63,19 @@ public class LampController : MonoBehaviour
         }
         else if (!state && isLampOn)
         {
-                LeanTween.scale(lampLight, new Vector3(0.0f, 0.0f, 0.0f), 0.2f).setOnComplete(() =>
-                {
-                lampParticle.Stop();
-                    lampLight.SetActive(false);
-                    isLampOn = false;
-                }).setEaseInOutCubic();
+            lampParticle.Stop(true);
+
+            LeanTween.scale(lampLight, new Vector3(0.0f, 0.0f, 0.0f), 0.2f).setOnComplete(() =>
+            {
+                lampLight.SetActive(false);
+                isLampOn = false;
+            }).setEaseInOutCubic();
         }
+    }
+
+    void SetPosAndRotationForLampParticle()
+    {
+        lampParticle.gameObject.transform.position = lampLight.transform.position;
+        lampParticle.gameObject.transform.rotation = lampLight.transform.rotation;
     }
 }
