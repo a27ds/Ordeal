@@ -8,7 +8,7 @@ public class KeyViewController : MonoBehaviour {
 
     public int keys;
     int maxKeys = 5;
-    public float distance = 0.65f;
+    float distance = 0.35f;
 
     private void Start()
     {

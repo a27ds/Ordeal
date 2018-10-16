@@ -8,7 +8,7 @@ public class BatteryController : MonoBehaviour
 
     public LampController Lamp;
     public GameObject BatteryMeter;
-    public float batteryLengthInSeconds;
+    public OptionsController optionsController;
 
     float batteryInPercent;
     float onePercentInSeconds;
@@ -26,11 +26,10 @@ public class BatteryController : MonoBehaviour
         Lamp = Lamp.GetComponent<LampController>();
         BatteryMeter = BatteryMeter.gameObject;
 
-        batteryLengthInSeconds = 3.0f;
         batteryInPercent = 100.0f;
         rechargingModifyer = 1.5f;
 
-        onePercentInSeconds = batteryLengthInSeconds / batteryInPercent;
+        onePercentInSeconds = optionsController.batteryLengthInSeconds / batteryInPercent;
     }
 
     // Update is called once per frame

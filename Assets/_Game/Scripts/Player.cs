@@ -11,19 +11,17 @@ public class Player : MonoBehaviour
     public static event PlayerDelegate RestoreAllLives;
     public static event PlayerDelegate LoseOneSecondFromOnelives;
 
-    
-
     Rigidbody2D playerBody;
     Animator anim;
     public KeyViewController keyView;
     public LampController lampController;
+    public OptionsController optionsController;
 
-    //public int keysToDoors;
-    public float verticalAxis;
-    public float horizontalAxis;
-    public float moveForce = 1.5f;
+    float verticalAxis;
+    float horizontalAxis;
     float timeTouchingGhosts;
     float oneSecondPassedBy;
+    float moveSpeed;
     KeyPressed keyPressed = KeyPressed.free;
 
     enum KeyPressed { free, left, right, up, down };
@@ -61,6 +59,7 @@ public class Player : MonoBehaviour
     {
         playerBody = this.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
+        moveSpeed = 1 * optionsController.moveForce;
     }
 
     void Update()
@@ -75,11 +74,11 @@ public class Player : MonoBehaviour
         RaycastHit2D[] PlayerContact = new RaycastHit2D[1];
         playerBody.gameObject.GetComponent<Collider2D>().Cast(Vector2.zero, PlayerContact);
 
-        if (PlayerContact[0] && PlayerContact[0].transform.gameObject.name.Equals("Ghost(Clone)"))
+        if (PlayerContact[0] && PlayerContact[0].transform.gameObject.name.Equals("Ghost(Clone)") && !PlayerContact[0].transform.gameObject.GetComponent<GhostController>().isGhostDead)
         {
             timeTouchingGhosts += Time.deltaTime;
             oneSecondPassedBy += Time.deltaTime;
-            Debug.Log("HEY");
+            Debug.Log("Contact with ghost");
             if (oneSecondPassedBy >= 1.0f)
             {
                 oneSecondPassedBy = 0;
@@ -105,8 +104,8 @@ void LifeViewController_Dead()
 
     void MovePlayer()
     {
-        playerBody.velocity = new Vector2(Mathf.Lerp(0, horizontalAxis * moveForce, 0.8f),
-                                          Mathf.Lerp(0, verticalAxis * moveForce, 0.8f));
+        playerBody.velocity = new Vector2(Mathf.Lerp(0, horizontalAxis * moveSpeed, 0.8f),
+                                          Mathf.Lerp(0, verticalAxis * moveSpeed, 0.8f));
     }
 
     void TouchInput_UpPressed(bool pressed)
@@ -189,11 +188,11 @@ void LifeViewController_Dead()
     {
         if (pressed)
         {
-            moveForce = 3.5f;
+            moveSpeed = 2 * optionsController.moveForce;
         }
         else
         {
-            moveForce = 1.5f;
+            moveSpeed = 1 * optionsController.moveForce;
         }
     }
 
@@ -220,8 +219,6 @@ void InputController_PausePressed(bool b)
 
     void PickUpKey(Collider2D collision)
     {
-        //keysToDoors++;
-        //keyView.keys = keysToDoors;
         keyView.GotAKey();
         collision.gameObject.GetComponent<KeyController>().KeyIsPickedUp();
     }
@@ -230,9 +227,6 @@ void InputController_PausePressed(bool b)
     {
         if (keyView.keys >= 1)
         {
-            Debug.Log("Open the door and use one key");
-            //keysToDoors--;
-            //keyView.keys = keysToDoors;
             keyView.UseOneKey();
             collision.gameObject.GetComponent<DoorController>().PlayerOpenDoor();
         }

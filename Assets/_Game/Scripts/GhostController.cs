@@ -6,12 +6,14 @@ public class GhostController : MonoBehaviour {
 
     public GameObject player;
     public ParticleSystem ghostPopped;
+    public OptionsController optionsController;
 
-    public float lifeInSecond;
-    public float timeInLight;
-
-    bool isGhostDead;
+    //public float lifeInSecond;
+    float timeInLight;
+    public bool isGhostDead;
     bool moveGhost;
+    NavMeshAgent2D ghostAgent;
+    Animator anim;
 
     SpriteRenderer GhostSpriteRender;
 
@@ -34,10 +36,12 @@ public class GhostController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GameObject.Find("Player");
+        ghostAgent = GetComponent<NavMeshAgent2D>();
+
+        anim = gameObject.GetComponent<Animator>();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         isGhostDead = false;
         GhostSpriteRender = GetComponent<SpriteRenderer>();
-        lifeInSecond = 0.5f;
         StartCoroutine(GhostAppear());
     }
 	
@@ -45,10 +49,14 @@ public class GhostController : MonoBehaviour {
 	void Update () {
         if (moveGhost)
         {
-            GetComponent<NavMeshAgent2D>().destination = player.transform.position;
+            ghostAgent.destination = player.transform.position;
+            AnimateGhost();
+            ghostAgent.speed = optionsController.ghostSpeed;
+
         }
-        if (timeInLight >= lifeInSecond)
+        if (timeInLight >= optionsController.ghostLifeInSecond)
         {
+            ghostAgent.isStopped = true;
             moveGhost = false;
             if (!isGhostDead)
             {
@@ -56,6 +64,26 @@ public class GhostController : MonoBehaviour {
             }
         }
 	}
+
+    void AnimateGhost()
+    {
+        if (ghostAgent.velocity.x > .5f)
+        {
+            anim.Play("ghost_right");
+        }
+        else if (ghostAgent.velocity.x < -.5f)
+        {
+            anim.Play("ghost_left");
+        }
+        else if (ghostAgent.velocity.y > .5f)
+        {
+            anim.Play("ghost_up");
+        }
+        else if (ghostAgent.velocity.y < -.5f)
+        {
+            anim.Play("ghost_down");
+        }
+    }
 
     IEnumerator GhostAppear()
     {
@@ -69,8 +97,8 @@ public class GhostController : MonoBehaviour {
 
     IEnumerator GhostGotPopped()
     {
-        moveGhost = false;
         isGhostDead = true;
+
         GhostSpriteRender.color = new Color(0, 0, 0, 0);
         ghostPopped.gameObject.SetActive(true);
         ghostPopped.Play(true);

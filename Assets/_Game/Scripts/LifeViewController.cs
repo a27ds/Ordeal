@@ -8,10 +8,11 @@ public class LifeViewController : MonoBehaviour
     public delegate void PlayerDead();
     public static event PlayerDead Dead;
 
-
+    public OptionsController optionsController;
     public GameObject heartPrefab;
-    public int lives = 4;
-    public float distance = 0.65f;
+    //public int lives = 4;
+
+    float distance = 0.65f;
     int livesInPlay;
 
     private void OnEnable()
@@ -32,8 +33,8 @@ public class LifeViewController : MonoBehaviour
 
     private void Start()
     {
-        livesInPlay = lives;
-        for (int i = 0; i < lives; i++)
+        livesInPlay = optionsController.lives;
+        for (int i = 0; i < optionsController.lives; i++)
         {
             GameObject newHeart = Instantiate(heartPrefab);
             newHeart.transform.SetParent(transform);
@@ -76,7 +77,7 @@ public class LifeViewController : MonoBehaviour
 
     public void RestoreAllLives()
     {
-        livesInPlay = lives;
+        livesInPlay = optionsController.lives;
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(true);

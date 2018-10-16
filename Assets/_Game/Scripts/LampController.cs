@@ -13,7 +13,6 @@ public class LampController : MonoBehaviour
     public BatteryController battery;
     public bool isLampOn;
     public bool switchOnOrOff;
-    public int howManyParticleSystems = 10;
     ParticleSystem lampParticle;
 
     // Use this for initialization

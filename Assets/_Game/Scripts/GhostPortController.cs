@@ -6,11 +6,10 @@ public class GhostPortController : MonoBehaviour {
 
     public ParticleSystem ghostPortParticle;
     public GameObject ghostPrefab;
-    public float spawnDelay = 3.0f;
-    public bool spawnGhost = true;
-    public float lifeInSeconds = 10.0f;
+    public OptionsController optionsController;
 
-    float timeInLight = 0;
+    float timeInLight;
+    bool spawnGhost = true;
 
     public List<Color> LifeCycleColors = new List<Color>();
 
@@ -42,8 +41,8 @@ public class GhostPortController : MonoBehaviour {
     void PortLifeCycle()
     {
         var main = ghostPortParticle.main;
-        if (timeInLight < lifeInSeconds) {
-            int index = (int) (timeInLight * LifeCycleColors.Count / lifeInSeconds);
+        if (timeInLight < optionsController.ghostPortLifeInSeconds) {
+            int index = (int) (timeInLight * LifeCycleColors.Count / optionsController.ghostPortLifeInSeconds);
             main.startColor = LifeCycleColors[index];
         }
         else 
@@ -67,7 +66,7 @@ public class GhostPortController : MonoBehaviour {
                 GameObject newGhost = Instantiate(ghostPrefab, transform.position + ((Vector3)Random.insideUnitCircle * 0.3f), Quaternion.identity);
                 newGhost.transform.SetParent(ghostFolder.transform);
             }
-            yield return new WaitForSecondsRealtime(3.0f);
+            yield return new WaitForSecondsRealtime(optionsController.spawnDelay);
         }
     }
 
