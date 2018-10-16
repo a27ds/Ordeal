@@ -6,8 +6,8 @@ public class GhostPortController : MonoBehaviour {
 
     public ParticleSystem ghostPortParticle;
     public GameObject ghostPrefab;
-    public OptionsController optionsController;
 
+    OptionsController optionsController;
     float timeInLight;
     bool spawnGhost = true;
 
@@ -30,6 +30,7 @@ public class GhostPortController : MonoBehaviour {
 
     void Start () 
     {
+        optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         StartCoroutine(SpawnGhost());
 	}
 

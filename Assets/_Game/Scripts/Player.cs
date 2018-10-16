@@ -11,12 +11,12 @@ public class Player : MonoBehaviour
     public static event PlayerDelegate RestoreAllLives;
     public static event PlayerDelegate LoseOneSecondFromOnelives;
 
-    Rigidbody2D playerBody;
-    Animator anim;
     public KeyViewController keyView;
     public LampController lampController;
-    public OptionsController optionsController;
 
+    Rigidbody2D playerBody;
+    Animator anim;
+    OptionsController optionsController;
     float verticalAxis;
     float horizontalAxis;
     float timeTouchingGhosts;
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         playerBody = this.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
         moveSpeed = 1 * optionsController.moveForce;

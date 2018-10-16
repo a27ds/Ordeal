@@ -8,8 +8,8 @@ public class BatteryController : MonoBehaviour
 
     public LampController Lamp;
     public GameObject BatteryMeter;
-    public OptionsController optionsController;
 
+    OptionsController optionsController;
     float batteryInPercent;
     float onePercentInSeconds;
     float rechargingModifyer;
@@ -23,6 +23,7 @@ public class BatteryController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         Lamp = Lamp.GetComponent<LampController>();
         BatteryMeter = BatteryMeter.gameObject;
 

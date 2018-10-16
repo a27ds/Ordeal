@@ -8,10 +8,11 @@ public class LifeViewController : MonoBehaviour
     public delegate void PlayerDead();
     public static event PlayerDead Dead;
 
-    public OptionsController optionsController;
+
     public GameObject heartPrefab;
     //public int lives = 4;
 
+    OptionsController optionsController;
     float distance = 0.65f;
     int livesInPlay;
 
@@ -33,6 +34,7 @@ public class LifeViewController : MonoBehaviour
 
     private void Start()
     {
+        optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         livesInPlay = optionsController.lives;
         for (int i = 0; i < optionsController.lives; i++)
         {

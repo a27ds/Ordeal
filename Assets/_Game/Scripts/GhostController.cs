@@ -6,13 +6,13 @@ public class GhostController : MonoBehaviour {
 
     public GameObject player;
     public ParticleSystem ghostPopped;
-    public OptionsController optionsController;
 
     //public float lifeInSecond;
     float timeInLight;
     public bool isGhostDead;
     bool moveGhost;
     NavMeshAgent2D ghostAgent;
+    OptionsController optionsController;
     Animator anim;
 
     SpriteRenderer GhostSpriteRender;
@@ -36,8 +36,9 @@ public class GhostController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         player = GameObject.Find("Player");
+        optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         ghostAgent = GetComponent<NavMeshAgent2D>();
-
+        ghostAgent.speed = optionsController.ghostSpeed;
         anim = gameObject.GetComponent<Animator>();
         Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         isGhostDead = false;
@@ -51,7 +52,7 @@ public class GhostController : MonoBehaviour {
         {
             ghostAgent.destination = player.transform.position;
             AnimateGhost();
-            ghostAgent.speed = optionsController.ghostSpeed;
+
 
         }
         if (timeInLight >= optionsController.ghostLifeInSecond)

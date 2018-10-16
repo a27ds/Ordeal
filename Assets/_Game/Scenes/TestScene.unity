@@ -355,10 +355,6 @@ Prefab:
       propertyPath: m_Name
       value: Ghost_Port (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1799094593098474, guid: c850fed212af14a37a72dc4a822a973f, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c850fed212af14a37a72dc4a822a973f, type: 2}
   m_IsPrefabAsset: 0
@@ -546,27 +542,27 @@ Prefab:
     - target: {fileID: 114960221266162052, guid: 06f5deeaf8ec04590bfeed5bd19aa7ab,
         type: 2}
       propertyPath: spawnDelay
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114960221266162052, guid: 06f5deeaf8ec04590bfeed5bd19aa7ab,
         type: 2}
       propertyPath: ghostPortLifeInSeconds
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114960221266162052, guid: 06f5deeaf8ec04590bfeed5bd19aa7ab,
         type: 2}
       propertyPath: lives
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114960221266162052, guid: 06f5deeaf8ec04590bfeed5bd19aa7ab,
         type: 2}
       propertyPath: ghostLifeInSecond
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114960221266162052, guid: 06f5deeaf8ec04590bfeed5bd19aa7ab,
         type: 2}
       propertyPath: ghostSpeed
-      value: 0.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 114960221266162052, guid: 06f5deeaf8ec04590bfeed5bd19aa7ab,
         type: 2}
