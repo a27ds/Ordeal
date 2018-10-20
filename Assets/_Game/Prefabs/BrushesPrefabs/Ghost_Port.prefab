@@ -103,7 +103,6 @@ MonoBehaviour:
   ghostPortParticle: {fileID: 198393151515883190}
   ghostPrefab: {fileID: 1791256688875102, guid: c0071df48260842f5b5f32c31998c421,
     type: 2}
-  optionsController: {fileID: 0}
   LifeCycleColors:
   - {r: 0.16862746, g: 0.9647059, b: 0.015686275, a: 1}
   - {r: 1, g: 0.924858, b: 0, a: 1}

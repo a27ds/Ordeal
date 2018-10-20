@@ -18,15 +18,18 @@ public class LampController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        battery = GameObject.Find("Meter").GetComponent<BatteryController>();
         lampParticle = Instantiate(lampParticlePrefab, transform);
         lampParticle.gameObject.SetActive(false);
 
-        lampLight = Instantiate(lampLight, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, -90), GameObject.Find("Lamp").transform);
-        lampLight.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        lampLight.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-
         player = transform.parent.gameObject;
         playerAnimator = player.GetComponent<Animator>();
+
+        lampLight = Instantiate(lampLight, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, -90), GameObject.Find("Lamp").transform);
+        lampLight.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        lampLight.transform.position = player.transform.position;
+
+
 
         AnimateLampDirection[] animateLampDirectionArray = playerAnimator.GetBehaviours<AnimateLampDirection>();
         foreach (var a in animateLampDirectionArray)
@@ -46,8 +49,6 @@ public class LampController : MonoBehaviour
 
         if (state && !isLampOn)
         {
-
-
             if (!lampParticle.gameObject.activeSelf)
             {
                 lampParticle.gameObject.SetActive(true);

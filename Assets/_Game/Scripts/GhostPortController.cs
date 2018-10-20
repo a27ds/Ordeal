@@ -10,6 +10,8 @@ public class GhostPortController : MonoBehaviour {
     OptionsController optionsController;
     float timeInLight;
     bool spawnGhost = true;
+    int maximumGhostSpawn = 2;
+    GameObject ghostFolder;
 
     public List<Color> LifeCycleColors = new List<Color>();
 
@@ -32,6 +34,7 @@ public class GhostPortController : MonoBehaviour {
     {
         optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         StartCoroutine(SpawnGhost());
+
 	}
 
     private void Update()
@@ -58,17 +61,31 @@ public class GhostPortController : MonoBehaviour {
 
     IEnumerator SpawnGhost()
     {
-        var ghostFolder = new GameObject();
+        ghostFolder = new GameObject();
         ghostFolder.name = "Ghosts";
-        while (spawnGhost)
-        {
-            if (ghostPortParticle.particleCount >= 150)
+        //while (true)
+        //{
+            //if (ghostFolder.transform.childCount <= maximumGhostSpawn)
+            //{
+            //    spawnGhost = true;
+            //}
+            while (spawnGhost)
             {
-                GameObject newGhost = Instantiate(ghostPrefab, transform.position + ((Vector3)Random.insideUnitCircle * 0.3f), Quaternion.identity);
-                newGhost.transform.SetParent(ghostFolder.transform);
+                //if (ghostFolder.transform.childCount >= maximumGhostSpawn)
+                //{
+                //    spawnGhost = false;
+                //    Debug.Log("Stop spawning ghosts");
+                //}
+
+                if (ghostPortParticle.particleCount >= 150)
+                {
+                    GameObject newGhost = Instantiate(ghostPrefab, transform.position + ((Vector3)Random.insideUnitCircle * 0.3f), Quaternion.identity);
+                    newGhost.transform.SetParent(ghostFolder.transform);
+                }
+                yield return new WaitForSecondsRealtime(optionsController.spawnDelay);
             }
-            yield return new WaitForSecondsRealtime(optionsController.spawnDelay);
-        }
+        //}
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

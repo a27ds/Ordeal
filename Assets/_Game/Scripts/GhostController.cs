@@ -52,8 +52,6 @@ public class GhostController : MonoBehaviour {
         {
             ghostAgent.destination = player.transform.position;
             AnimateGhost();
-
-
         }
         if (timeInLight >= optionsController.ghostLifeInSecond)
         {

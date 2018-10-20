@@ -6,8 +6,8 @@ using UnityEngine;
 public class BatteryController : MonoBehaviour
 {
 
-    public LampController Lamp;
-    public GameObject BatteryMeter;
+    public LampController lamp;
+    public GameObject batteryMeter;
 
     OptionsController optionsController;
     float batteryInPercent;
@@ -23,9 +23,10 @@ public class BatteryController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        lamp = GameObject.Find("Lamp").GetComponent<LampController>();
         optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
-        Lamp = Lamp.GetComponent<LampController>();
-        BatteryMeter = BatteryMeter.gameObject;
+        lamp = lamp.GetComponent<LampController>();
+        batteryMeter = batteryMeter.gameObject;
 
         batteryInPercent = 100.0f;
         rechargingModifyer = 1.5f;
@@ -36,7 +37,7 @@ public class BatteryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isLampOn = Lamp.isLampOn;
+        isLampOn = lamp.isLampOn;
         if (batteryInPercent <= 0 && !isBatteryDead)
         {
             StartCoroutine(DeadBattery());
@@ -84,14 +85,14 @@ public class BatteryController : MonoBehaviour
     void ScaleBatteryMeter()
     {
         Vector3 scaleTheMeter = new Vector3(batteryInPercent / 100, 1, 1);
-        LeanTween.scale(BatteryMeter, scaleTheMeter, 0.0f);
+        LeanTween.scale(batteryMeter, scaleTheMeter, 0.0f);
         if (batteryInPercent <= 30)
         {
-            BatteryMeter.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            batteryMeter.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
         else
         {
-            BatteryMeter.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            batteryMeter.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
 
@@ -99,23 +100,23 @@ public class BatteryController : MonoBehaviour
     {
         isLampOn = false;
         isBatteryDead = true;
-        Lamp.lampLight.SetActive(false);
+        lamp.lampLight.SetActive(false);
         yield return new WaitForSecondsRealtime(0.1f);
-        Lamp.lampLight.SetActive(true);
+        lamp.lampLight.SetActive(true);
         yield return new WaitForSecondsRealtime(0.1f);
-        Lamp.lampLight.SetActive(false);
+        lamp.lampLight.SetActive(false);
         yield return new WaitForSecondsRealtime(0.1f);
-        Lamp.lampLight.SetActive(true);
+        lamp.lampLight.SetActive(true);
         yield return new WaitForSecondsRealtime(0.1f);
-        Lamp.lampLight.SetActive(false);
+        lamp.lampLight.SetActive(false);
         yield return new WaitForSecondsRealtime(0.2f);
-        Lamp.lampLight.SetActive(true);
+        lamp.lampLight.SetActive(true);
         yield return new WaitForSecondsRealtime(0.2f);
-        Lamp.lampLight.SetActive(false);
+        lamp.lampLight.SetActive(false);
         yield return new WaitForSecondsRealtime(0.3f);
-        Lamp.lampLight.SetActive(true);
+        lamp.lampLight.SetActive(true);
         yield return new WaitForSecondsRealtime(0.2f);
-        Lamp.lampLight.SetActive(false);
+        lamp.lampLight.SetActive(false);
         StartCoroutine(RechargingBattery());
     }
 }

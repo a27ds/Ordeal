@@ -51,10 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b258ffd4bce4f08a2d44940c2e6afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  batteryLengthInSeconds: 0
-  spawnDelay: 3
-  lifeInSeconds: 10
-  lives: 4
-  lifeInSecond: 0
-  timeInLight: 0
+  batteryLengthInSeconds: 10
+  spawnDelay: 6
+  ghostPortLifeInSeconds: 10
+  lives: 3
+  ghostLifeInSecond: 0.2
   moveForce: 1.5
+  ghostSpeed: 1.2

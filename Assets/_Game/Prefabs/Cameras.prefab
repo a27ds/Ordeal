@@ -176,7 +176,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1686118220962982
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -215,6 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4210673484257506}
+  - component: {fileID: 114767554533668470}
   - component: {fileID: 114183031719795132}
   m_Layer: 0
   m_Name: CM vcam1
@@ -351,7 +352,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786290833117656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5499998, y: 10.349998, z: 0}
+  m_LocalPosition: {x: -0.00000023841858, y: -0.0000018775463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4921273924044700}
@@ -438,7 +439,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258787781905214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5499998, y: 10.349998, z: 0}
+  m_LocalPosition: {x: -0.00000023841858, y: -0.0000018775463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4010626622148118}
@@ -490,7 +491,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4921273924044700
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686118220962982}
@@ -747,7 +748,7 @@ AudioListener:
   m_Enabled: 1
 --- !u!114 &114077108014962654
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686118220962982}
@@ -810,7 +811,7 @@ MonoBehaviour:
   m_ComponentOwner: {fileID: 4921273924044700}
 --- !u!114 &114292465529106000
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686118220962982}
@@ -847,9 +848,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76f94e7eae4f4c75847385b80659cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lamp: {fileID: 0}
-  BatteryMeter: {fileID: 1971811992723804}
-  optionsController: {fileID: 0}
+  lamp: {fileID: 0}
+  batteryMeter: {fileID: 1971811992723804}
   isBatteryDead: 0
 --- !u!114 &114610520237182166
 MonoBehaviour:
@@ -892,7 +892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4b632d426f9479299cc5437a08c925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionsController: {fileID: 0}
   heartPrefab: {fileID: 1383569063628538, guid: c88377d6753fd42a096b48ff31ecf4c6,
     type: 2}
 --- !u!114 &114762385578943872
@@ -909,6 +908,17 @@ MonoBehaviour:
   keyInViewPrefab: {fileID: 1832404528093170, guid: aa38b16d09b254ef381187e67049c9d2,
     type: 2}
   keys: 0
+--- !u!114 &114767554533668470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786290833117656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c7f990a0ed94c3bbadd1b3b9228cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114788837401561310
 MonoBehaviour:
   m_ObjectHideFlags: 1

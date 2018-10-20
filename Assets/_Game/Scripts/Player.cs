@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     Rigidbody2D playerBody;
     Animator anim;
     OptionsController optionsController;
+    Collider2D PlayerCollider;
+    Collider2D KeyCollider;
     float verticalAxis;
     float horizontalAxis;
     float timeTouchingGhosts;
@@ -57,10 +59,13 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        keyView = GameObject.Find("KeyView").GetComponent<KeyViewController>();
         optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         playerBody = this.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
         moveSpeed = 1 * optionsController.moveForce;
+        PlayerCollider = transform.GetComponent<Collider2D>();
+        KeyCollider = GameObject.Find("Key").transform.GetComponent<Collider2D>();
     }
 
     void Update()
@@ -209,12 +214,16 @@ void InputController_PausePressed(bool b)
             TryToOpenDoorAndUseOneKey(collision);
         }
     }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name.Equals("Key"))
+        if (PlayerCollider.IsTouching(collision.gameObject.GetComponent<Collider2D>()))
         {
-            PickUpKey(collision);
+            if (collision.gameObject.name.Equals("Key"))
+            {
+                PickUpKey(collision);
+            }
         }
     }
 
