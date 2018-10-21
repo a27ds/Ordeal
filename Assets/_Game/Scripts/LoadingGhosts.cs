@@ -7,7 +7,7 @@ public class LoadingGhosts : MonoBehaviour
 {
 
     public GameObject ghost;
-    public TextMeshPro loadingText;
+    public GameObject loadingText;
 
     public float speed = 0.2f;
     public int maximunNumberOfLoadingGhosts = 20;
@@ -20,7 +20,6 @@ public class LoadingGhosts : MonoBehaviour
     void Start()
     {
         GameObject.Find("SceneHandler").GetComponent<SceneHandler>().FadeFromBlack();
-        loadingText.sortingOrder = 300;
         screenWidth = Screen.width;
         screenHeight = Screen.height;
         StartCoroutine(LoadingAni());
