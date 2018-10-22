@@ -11,7 +11,6 @@ public class LevelClearedController : MonoBehaviour {
     {
         if (collision.gameObject.name.Equals("Player"))
         {
-            Debug.Log("LEVEL CLEARED");
             WhatLevelWillBeLoaded();
         }
     }
@@ -34,7 +33,7 @@ public class LevelClearedController : MonoBehaviour {
             default:
                 break;
         }
-        GameObject.Find("SceneHandler").GetComponent<SceneHandler>().ChangeScene(levelToLoad);
+        GameObject.Find("SceneHandler(Clone)").GetComponent<SceneHandler>().ChangeScene(levelToLoad);
 
 
     }

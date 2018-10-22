@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class StartButtonController : MonoBehaviour
 {
-
-    private void OnMouseDown()
+    void OnMouseDown()
     {
-        GameObject.Find("SceneHandler").GetComponent<SceneHandler>().ChangeScene("Level1");
+        GameObject.Find("SceneHandler(Clone)").GetComponent<SceneHandler>().ChangeScene("Level1");
     }
 }

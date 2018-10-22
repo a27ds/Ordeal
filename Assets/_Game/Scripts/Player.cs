@@ -28,13 +28,13 @@ public class Player : MonoBehaviour
 
     enum KeyPressed { free, left, right, up, down };
 
-    private void Awake()
+    void Awake()
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         InputController.UpPressed += TouchInput_UpPressed;
         InputController.DownPressed += TouchInput_DownPressed;
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         LifeViewController.Dead += LifeViewController_Dead;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         InputController.UpPressed -= TouchInput_UpPressed;
         InputController.DownPressed -= TouchInput_DownPressed;
@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
     {
         MovePlayer();
         CheckCollisions();
-
     }
 
     void CheckCollisions()
@@ -84,13 +83,12 @@ public class Player : MonoBehaviour
         {
             timeTouchingGhosts += Time.deltaTime;
             oneSecondPassedBy += Time.deltaTime;
-            Debug.Log("Contact with ghost");
             if (oneSecondPassedBy >= 1.0f)
             {
                 oneSecondPassedBy = 0;
                 LoseOneSecondFromOnelives();
             }
-               
+
             if (timeTouchingGhosts >= 5.0f)
             {
                 oneSecondPassedBy = 0;
@@ -98,12 +96,10 @@ public class Player : MonoBehaviour
                 LoseOneLife();
             }
         }
-
     }
 
-void LifeViewController_Dead()
+    void LifeViewController_Dead()
     {
-        Debug.Log("Player is Dead");
         gameObject.SetActive(false);
     }
 
@@ -202,21 +198,20 @@ void LifeViewController_Dead()
         }
     }
 
-void InputController_PausePressed(bool b)
+    void InputController_PausePressed(bool b)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name.Equals("DoorUp") || collision.gameObject.name.Equals("DoorDown") || collision.gameObject.name.Equals("DoorRight") || collision.gameObject.name.Equals("DoorLeft"))
         {
             TryToOpenDoorAndUseOneKey(collision);
         }
     }
-    
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (PlayerCollider.IsTouching(collision.gameObject.GetComponent<Collider2D>()))
         {
@@ -245,5 +240,4 @@ void InputController_PausePressed(bool b)
             Debug.Log("Can't open the door");
         }
     }
-
 }

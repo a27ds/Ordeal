@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class LifeViewController : MonoBehaviour
 {
-
     public delegate void PlayerDead();
     public static event PlayerDead Dead;
 
-
     public GameObject heartPrefab;
-    //public int lives = 4;
 
     OptionsController optionsController;
     float distance = 0.65f;
     int livesInPlay;
 
-    private void OnEnable()
+    void OnEnable()
     {
         Player.LoseOneLife += Player_LoseOneLife;
         Player.RestoreOneLife += Player_RestoreOneLife;
@@ -24,7 +21,7 @@ public class LifeViewController : MonoBehaviour
         Player.LoseOneSecondFromOnelives += Player_LoseOneSecondFromOnelives;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         Player.LoseOneLife -= Player_LoseOneLife;
         Player.RestoreOneLife -= Player_RestoreOneLife;
@@ -32,7 +29,7 @@ public class LifeViewController : MonoBehaviour
         Player.LoseOneSecondFromOnelives -= Player_LoseOneSecondFromOnelives;
     }
 
-    private void Start()
+    void Start()
     {
         optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         livesInPlay = optionsController.lives;
@@ -50,7 +47,6 @@ public class LifeViewController : MonoBehaviour
     {
         transform.GetChild(livesInPlay - 1).gameObject.transform.localScale *= 0.8f;
     }
-
 
     void Player_LoseOneLife()
     {

@@ -15,8 +15,8 @@ public class InputController : MonoBehaviour
 
     public string justPressedDPad = "";
     public int fingerIdPressedDPad = -1;
-
-    //public LayerMask touchInputMask; Använda mig av detta?
+    public string justPressedButton = "";
+    public int fingerIdPressedButton = -1;
 
     void Update()
     {
@@ -41,6 +41,11 @@ public class InputController : MonoBehaviour
                             fingerIdPressedDPad = touch.fingerId;
                             justPressedDPad = hit2D.collider.tag;
                         }
+                        if (hit2D.collider.tag.Equals("A") || hit2D.collider.tag.Equals("B"))
+                        {
+                            fingerIdPressedButton = touch.fingerId;
+                            justPressedButton = hit2D.collider.tag;
+                        }
                         WhichButton(hit2D.collider.tag);
                     }
 
@@ -52,10 +57,20 @@ public class InputController : MonoBehaviour
                             StopPressingDPpad(justPressedDPad);
                             WhichButton(hit2D.collider.tag);
                         }
+                        if (justPressedButton != hit2D.collider.tag && fingerIdPressedButton == touch.fingerId)
+                        {
+                            StopPressingABOrPause(justPressedButton);
+                            WhichButton(hit2D.collider.tag);
+                        }
                         if (hit2D.collider.tag.Equals("Up") || hit2D.collider.tag.Equals("Down") || hit2D.collider.tag.Equals("Left") || hit2D.collider.tag.Equals("Right"))
                         {
                             fingerIdPressedDPad = touch.fingerId;
                             justPressedDPad = hit2D.collider.tag;
+                        }
+                        if (hit2D.collider.tag.Equals("A") || hit2D.collider.tag.Equals("B"))
+                        {
+                            fingerIdPressedButton = touch.fingerId;
+                            justPressedButton = hit2D.collider.tag;
                         }
                         WhichButton(hit2D.collider.tag);
                     }
@@ -66,23 +81,29 @@ public class InputController : MonoBehaviour
                         {
                             StopPressingDPpad(justPressedDPad);
                         }
-                        else
+                        else if (fingerIdPressedButton == touch.fingerId)
                         {
-                            StopPressingABOrPause(hit2D.collider.tag);
+                            StopPressingABOrPause(justPressedButton);
                         }
-
                     }
                 }
                 else if (fingerIdPressedDPad == touch.fingerId)
                 {
                     StopPressingDPpad(justPressedDPad);
                 }
+                else if (fingerIdPressedButton == touch.fingerId)
+                {
+                    StopPressingABOrPause(justPressedButton);
+                }
+
             }
         }
     }
 
     void StopPressingABOrPause(string whichTag)
     {
+        justPressedButton = "";
+        fingerIdPressedButton = -1;
         switch (whichTag)
         {
             case "A":
@@ -132,16 +153,6 @@ public class InputController : MonoBehaviour
                     RightPressed(false);
                     break;
                 }
-            //case "A":
-            //    {
-            //        APressed(false);
-            //        break;
-            //    }
-            //case "B":
-                //{
-                //    BPressed(false);
-                //    break;
-                //}
             default:
                 break;
         }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostPortController : MonoBehaviour {
+public class GhostPortController : MonoBehaviour
+{
 
     public ParticleSystem ghostPortParticle;
     public GameObject ghostPrefab;
@@ -10,7 +11,7 @@ public class GhostPortController : MonoBehaviour {
     OptionsController optionsController;
     float timeInLight;
     bool spawnGhost = true;
-    int maximumGhostSpawn = 2;
+    int maximumGhostSpawn = 10;
     GameObject ghostFolder;
 
     public List<Color> LifeCycleColors = new List<Color>();
@@ -30,12 +31,11 @@ public class GhostPortController : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void Start () 
+    void Start()
     {
         optionsController = GameObject.Find("Options").GetComponent<OptionsController>();
         StartCoroutine(SpawnGhost());
-
-	}
+    }
 
     private void Update()
     {
@@ -45,11 +45,12 @@ public class GhostPortController : MonoBehaviour {
     void PortLifeCycle()
     {
         var main = ghostPortParticle.main;
-        if (timeInLight < optionsController.ghostPortLifeInSeconds) {
-            int index = (int) (timeInLight * LifeCycleColors.Count / optionsController.ghostPortLifeInSeconds);
+        if (timeInLight < optionsController.ghostPortLifeInSeconds)
+        {
+            int index = (int)(timeInLight * LifeCycleColors.Count / optionsController.ghostPortLifeInSeconds);
             main.startColor = LifeCycleColors[index];
         }
-        else 
+        else
         {
             ghostPortParticle.Stop(true);
             if (ghostPortParticle.particleCount <= 0)
@@ -63,20 +64,10 @@ public class GhostPortController : MonoBehaviour {
     {
         ghostFolder = new GameObject();
         ghostFolder.name = "Ghosts";
-        //while (true)
-        //{
-            //if (ghostFolder.transform.childCount <= maximumGhostSpawn)
-            //{
-            //    spawnGhost = true;
-            //}
-            while (spawnGhost)
+        while (true)
+        {
+            while (ghostFolder.transform.childCount <= maximumGhostSpawn)
             {
-                //if (ghostFolder.transform.childCount >= maximumGhostSpawn)
-                //{
-                //    spawnGhost = false;
-                //    Debug.Log("Stop spawning ghosts");
-                //}
-
                 if (ghostPortParticle.particleCount >= 150)
                 {
                     GameObject newGhost = Instantiate(ghostPrefab, transform.position + ((Vector3)Random.insideUnitCircle * 0.3f), Quaternion.identity);
@@ -84,8 +75,8 @@ public class GhostPortController : MonoBehaviour {
                 }
                 yield return new WaitForSecondsRealtime(optionsController.spawnDelay);
             }
-        //}
-
+            yield return new WaitForSecondsRealtime(optionsController.spawnDelay);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -95,6 +86,7 @@ public class GhostPortController : MonoBehaviour {
             timeInLight += Time.deltaTime;
         }
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.name.Equals("Light(Clone)"))

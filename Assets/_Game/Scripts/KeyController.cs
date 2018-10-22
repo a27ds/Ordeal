@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyController : MonoBehaviour {
-
+public class KeyController : MonoBehaviour
+{
     SpriteRenderer keySpriteRenderer;
 
-	// Use this for initialization
-	void Start () {
+    void Start()
+    {
         keySpriteRenderer = GetComponent<SpriteRenderer>();
-	}
+    }
 
     public void KeyIsPickedUp()
     {
@@ -18,7 +18,6 @@ public class KeyController : MonoBehaviour {
 
     IEnumerator KeyIsPickedUpAnim()
     {
-        Debug.Log("Key is picked Up");
         bool keyOnGround = true;
         while (keyOnGround)
         {
@@ -31,5 +30,4 @@ public class KeyController : MonoBehaviour {
             }
         }
     }
-
 }

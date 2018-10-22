@@ -5,23 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
-
+    public static SceneHandler instance = null;
     public GameObject blackSquare;
     SpriteRenderer blackSquareSpriteRenderer;
     float fadeSpeed = 1.5f;
     string sceneToLoad;
     AsyncOperation async;
 
-    private void Awake()
+    void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
         blackSquareSpriteRenderer = blackSquare.GetComponent<SpriteRenderer>();
     }
 
-    // Use this for initialization
     void Start()
     {
         FadeFromBlack();
-        DontDestroyOnLoad(gameObject);
         SceneManager.activeSceneChanged += SceneManager_ActiveSceneChanged;
     }
 
@@ -68,7 +75,6 @@ public class SceneHandler : MonoBehaviour
     {
         sceneToLoad = scene;
         FadeToBlackAndLoadLevel("LoadingScene");
-
     }
 
     void SceneManager_ActiveSceneChanged(Scene arg0, Scene arg1)
@@ -92,7 +98,7 @@ public class SceneHandler : MonoBehaviour
         FadeToBlack();
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
         SceneManager.activeSceneChanged -= SceneManager_ActiveSceneChanged;
     }

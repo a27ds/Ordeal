@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
-
     public GameObject Ghost;
     public GameObject Player;
+    public GameObject Logo;
+    public GameObject startButton;
     public List<Transform> playerWaypoints;
     public List<Transform> ghostWaypoints;
     public float GhostMoveSpeed = 5.0f;
@@ -17,13 +18,21 @@ public class MainMenuController : MonoBehaviour
     GameObject newGhost;
     GameObject newPlayer;
 
-    // Use this for initialization
     void Start()
     {
         SpawnGhostOnWaypoint();
         SpawnPlayerOnWaypoint();
         MoveGhost();
         MovePlayer();
+        LayoutTheLoadingWindow();
+    }
+
+    void LayoutTheLoadingWindow()
+    {
+        Vector3 logoPos = Camera.main.ScreenToWorldPoint(new Vector3(50, 50, 10));
+        Vector3 startButtonPos = Camera.main.ScreenToWorldPoint(new Vector3(GameManager.screenWidth - 50, GameManager.screenHeight / 2, 10));
+        Logo.transform.position = logoPos;
+        startButton.transform.position = startButtonPos;
     }
 
     void SpawnPlayerOnWaypoint()
@@ -41,7 +50,6 @@ public class MainMenuController : MonoBehaviour
         {
             waypointIndex++;
         }
-
         LeanTween.move(newPlayer, playerWaypoints[waypointIndex].position, playerMoveSpeed).setEaseLinear().setOnComplete(MovePlayer);
     }
 

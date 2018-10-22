@@ -5,23 +5,20 @@ using TMPro;
 
 public class LoadingGhosts : MonoBehaviour
 {
-
     public GameObject ghost;
     public GameObject loadingText;
 
     public float speed = 0.2f;
     public int maximunNumberOfLoadingGhosts = 20;
     int numberOfLoadingGhosts;
-    float screenWidth;
-    float screenHeight;
     float randomScreenHeight;
 
-    // Use this for initialization
+    public int screenWidth { get; private set; }
+
     void Start()
     {
-        GameObject.Find("SceneHandler").GetComponent<SceneHandler>().FadeFromBlack();
-        screenWidth = Screen.width;
-        screenHeight = Screen.height;
+        GameObject.Find("SceneHandler(Clone)").GetComponent<SceneHandler>().FadeFromBlack();
+        LayoutTheLoadingWindow();
         StartCoroutine(LoadingAni());
     }
 
@@ -46,21 +43,28 @@ public class LoadingGhosts : MonoBehaviour
         Vector3 pos;
         Vector3 moveToPos;
 
-        randomScreenHeight = Random.Range(300, screenHeight-100);
+        randomScreenHeight = Random.Range(300, GameManager.screenHeight - 100);
         if (Random.Range(0, 2) == 1)
         {
             pos = Camera.main.ScreenToWorldPoint(new Vector3(-40, randomScreenHeight, 10));
-            moveToPos = Camera.main.ScreenToWorldPoint(new Vector3(screenWidth + 40, randomScreenHeight, 10));
+            moveToPos = Camera.main.ScreenToWorldPoint(new Vector3(GameManager.screenWidth + 40, randomScreenHeight, 10));
             newGhost = Instantiate(ghost, pos, Quaternion.Euler(0, 180, 0), transform);
         }
         else
         {
-            pos = Camera.main.ScreenToWorldPoint(new Vector3(screenWidth + 40, randomScreenHeight, 10));
+            pos = Camera.main.ScreenToWorldPoint(new Vector3(GameManager.screenWidth + 40, randomScreenHeight, 10));
             moveToPos = Camera.main.ScreenToWorldPoint(new Vector3(-40, randomScreenHeight, 10));
             newGhost = Instantiate(ghost, pos, Quaternion.Euler(0, 0, 0), transform);
         }
-        LeanTween.move(newGhost, moveToPos, speed).setEaseInOutQuad().setOnComplete(() => {
+        LeanTween.move(newGhost, moveToPos, speed).setEaseInOutQuad().setOnComplete(() =>
+        {
             Destroy(newGhost);
         });
+    }
+
+    void LayoutTheLoadingWindow()
+    {
+        Vector3 loadingTextPos = Camera.main.ScreenToWorldPoint(new Vector3(50, 50, 10));
+        loadingText.transform.position = loadingTextPos;
     }
 }

@@ -167,6 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4010626622148118}
+  - component: {fileID: 114181043843109864}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -176,7 +177,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1686118220962982
 GameObject:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -352,7 +353,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786290833117656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: -0.0000018775463, z: 0}
+  m_LocalPosition: {x: -0.10000024, y: -0.0000018775463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4921273924044700}
@@ -370,7 +371,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1560808850616914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.45, y: -0.42, z: 0}
+  m_LocalPosition: {x: 4.261999, y: -2.0509996, z: 0}
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_Children: []
   m_Father: {fileID: 4354182837983902}
@@ -396,7 +397,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1261126386198086}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.24, y: -1.7, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1.084}
   m_Children:
   - {fileID: 4613344134823566}
@@ -413,7 +414,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1816758954007602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.728001, y: 0.5109997, z: 0}
+  m_LocalPosition: {x: 5.54, y: -1.12, z: 0}
   m_LocalScale: {x: 1.36, y: 1.36, z: 1.36}
   m_Children: []
   m_Father: {fileID: 4354182837983902}
@@ -439,7 +440,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258787781905214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: -0.0000018775463, z: 0}
+  m_LocalPosition: {x: -0.10000024, y: -0.0000018775463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4010626622148118}
@@ -452,7 +453,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1576109139149600}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.79, y: 0.01, z: 0}
+  m_LocalPosition: {x: -4.83, y: -1.51, z: 0}
   m_LocalScale: {x: 1.8089, y: 1.8089, z: 1.809}
   m_Children:
   - {fileID: 4929367932346166}
@@ -491,7 +492,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4921273924044700
 Transform:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686118220962982}
@@ -509,7 +510,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990149663979666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.61, y: 4.12, z: 0}
+  m_LocalPosition: {x: -5.5, y: 2.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4354182837983902}
@@ -748,7 +749,7 @@ AudioListener:
   m_Enabled: 1
 --- !u!114 &114077108014962654
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686118220962982}
@@ -784,6 +785,24 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 100
+--- !u!114 &114181043843109864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649380206667770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b3c4a0e989c428eafb68280f6f550e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crossController: {fileID: 1576109139149600}
+  pauseButton: {fileID: 1990149663979666}
+  aButton: {fileID: 1560808850616914}
+  bButton: {fileID: 1816758954007602}
+  lives: {fileID: 1425360603996198}
+  battery: {fileID: 1286785170343330}
+  keyView: {fileID: 1843984682276674}
 --- !u!114 &114183031719795132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -811,7 +830,7 @@ MonoBehaviour:
   m_ComponentOwner: {fileID: 4921273924044700}
 --- !u!114 &114292465529106000
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686118220962982}
@@ -932,6 +951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   justPressedDPad: 
   fingerIdPressedDPad: -1
+  justPressedButton: 
+  fingerIdPressedButton: -1
 --- !u!212 &212006203929752322
 SpriteRenderer:
   m_ObjectHideFlags: 1

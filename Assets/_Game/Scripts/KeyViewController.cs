@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyViewController : MonoBehaviour {
-
+public class KeyViewController : MonoBehaviour
+{
     public GameObject keyInViewPrefab;
 
     public int keys;
     int maxKeys = 5;
     float distance = 0.35f;
 
-    private void Start()
+    void Start()
     {
         for (int i = 0; i < maxKeys; i++)
         {

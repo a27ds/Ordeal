@@ -15,7 +15,7 @@ public class CMVCamController : MonoBehaviour {
         Camera.main.transform.position = player.position;
         virtualCamera.Follow = player;
 
-        GameObject.Find("SceneHandler").GetComponent<SceneHandler>().GetCameraPos();
+        GameObject.Find("SceneHandler(Clone)").GetComponent<SceneHandler>().GetCameraPos();
 
     }
 	
