@@ -7,7 +7,7 @@ public class LevelClearedController : MonoBehaviour {
 
     string levelToLoad;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name.Equals("Player"))
         {
@@ -17,7 +17,6 @@ public class LevelClearedController : MonoBehaviour {
 
     void WhatLevelWillBeLoaded()
     {
-
         switch (SceneManager.GetActiveScene().name)
         {
             case "Level1":
@@ -34,7 +33,5 @@ public class LevelClearedController : MonoBehaviour {
                 break;
         }
         GameObject.Find("SceneHandler(Clone)").GetComponent<SceneHandler>().ChangeScene(levelToLoad);
-
-
     }
 }

@@ -29,8 +29,8 @@ public class MainMenuController : MonoBehaviour
 
     void LayoutTheLoadingWindow()
     {
-        Vector3 logoPos = Camera.main.ScreenToWorldPoint(new Vector3(50, 50, 10));
-        Vector3 startButtonPos = Camera.main.ScreenToWorldPoint(new Vector3(GameManager.screenWidth - 50, GameManager.screenHeight / 2, 10));
+        Vector3 logoPos = Camera.main.ScreenToWorldPoint(new Vector3(100, 50, 10));
+        Vector3 startButtonPos = Camera.main.ScreenToWorldPoint(new Vector3(GameManager.screenWidth - 100, GameManager.screenHeight / 2, 10));
         Logo.transform.position = logoPos;
         startButton.transform.position = startButtonPos;
     }

@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         screenWidth = Screen.width;
         screenHeight = Screen.height;
+        Debug.Log(screenHeight);
     }
 
     void LifeViewController_Dead()

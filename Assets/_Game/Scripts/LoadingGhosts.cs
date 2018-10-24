@@ -13,18 +13,25 @@ public class LoadingGhosts : MonoBehaviour
     int numberOfLoadingGhosts;
     float randomScreenHeight;
 
-    public int screenWidth { get; private set; }
+    //public int screenWidth { get; private set; }
 
     void Start()
     {
         GameObject.Find("SceneHandler(Clone)").GetComponent<SceneHandler>().FadeFromBlack();
         LayoutTheLoadingWindow();
         StartCoroutine(LoadingAni());
+        StartCoroutine(FlashingText());
     }
 
-    void flashingText()
+    IEnumerator FlashingText()
     {
-        //Gör så att texten går upp och ner i alphan
+        while (true)
+        {
+            LeanTween.alpha(loadingText, 0.0f, 0.6f);
+            yield return new WaitForSecondsRealtime(0.6f);
+            LeanTween.alpha(loadingText, 1.0f, 0.6f);
+            yield return new WaitForSecondsRealtime(0.6f);
+        }
     }
 
     IEnumerator LoadingAni()
